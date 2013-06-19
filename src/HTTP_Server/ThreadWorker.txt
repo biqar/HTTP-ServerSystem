@@ -1,0 +1,43 @@
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: raqibul
+ * Date: 6/18/13
+ * Time: 11:28 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class ThreadWorker {
+    static ReadWriteLock rwLock = new ReentrantReadWriteLock();
+    String fName = null;
+
+    public ThreadWorker(String fName) {
+        this.fName = fName;
+    }
+
+    public void write() {
+        rwLock.writeLock().lock();
+        try {
+            //write to store;
+        } catch (Exception e) {
+            //Handle Exception here ...
+        } finally {
+            rwLock.writeLock().unlock();
+        }
+    }
+
+    public String read() {
+        rwLock.readLock().lock();
+        try {
+            //read from store;
+        } catch (Exception e) {
+            //Handle Exception here ...
+        }
+        finally {
+            rwLock.readLock().unlock();
+        }
+        return null;
+    }
+}

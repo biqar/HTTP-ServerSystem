@@ -1,0 +1,48 @@
+class MyClass {
+    private static ReadWriteLock rwlock = new ReentrantReadWriteLock();
+
+	public MyClass(string filename) {
+       // initialize
+	}
+    public void write() {
+       rwlock.writeLock().lock();
+       try {
+          write to store;
+       } finally {
+          rwlock.writeLock().unlock();
+       }
+    }
+
+    public String read() {
+       rwlock.readLock().lock();
+       try {
+          read from store;
+       } finally {
+          rwlock.readLock().unlock();
+       }
+    }
+}
+
+class MyThread extemds Thread {
+   Myclass X;
+   MyThread () { // initialize }
+   void run() {
+       if read thread call read
+       else call write
+   }
+}
+
+
+Example :
+http://javabeanz.wordpress.com/2010/02/19/threadpoolexecutor-basics/
+http://www.journaldev.com/1069/java-thread-pool-example-using-executors-and-threadpoolexecutor
+http://java.dzone.com/news/java-concurrency-thread-pools
+
+http://stackoverflow.com/questions/16250531/how-to-implement-http-1-1keep-alive-feature-in-my-web-server
+http://stackoverflow.com/questions/13866599/java-serversocket-how-to-synchronize-multiple-incoming-connections
+http://codereview.stackexchange.com/questions/3472/simple-multi-threaded-java-server-loop
+
+Study:
+http://www.vogella.com/articles/JavaConcurrency/article.html
+http://tutorials.jenkov.com/java-multithreaded-servers/thread-pooled-server.html
+http://www.ntu.edu.sg/home/ehchua/programming/java/J5e_multithreading.html
